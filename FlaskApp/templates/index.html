@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://kit.fontawesome.com/3b1ca000cb.js"></script>
+    <title>Order Management</title>
+</head>
+<body>
+
+
+    <div class="add__cutsomer">
+        <i class="fa fa-close"></i>
+        <div class="form">
+            <div class="take__info">
+                <input id="flname" type="text" placeholder="Firstname + Lastname">
+                <input id="phonenum" type="text" placeholder="Enter the phone number">
+                <input id="address" type="text" placeholder="Enter the address.">
+                <input id="addcustbutton" type="button" value="Add Customer">
+            </div>
+        </div>
+    </div>
+
+    <div class="add__order">
+        <i class="fa fa-close"></i>
+        <div class="form">
+            <div class="take__info">
+                <select name="" id="" >
+                    <option value="fasfs">Select Customer</option>
+                    <option value="fasfs">Parimal Mahindrakar</option>
+                    <option value="fasfs">Rushikesh Landge</option>
+                    <option value="fasfs">Deepak Kavhale</option>
+                    <option value="fasfs">Predoom Chalk</option>
+                    <option value="fasfs">Prathmesh Kulkarni</option>
+                    <option value="fasfs">Tanishk Rane</option>
+                    <option value="fasfs">Omkar Bhope</option>
+                </select>
+                <select name="" id="" >
+                    <option value="fasfs">Select Orderitems</option>
+                    <option value="fasfs">Telephone</option>
+                    <option value="fasfs">Smart TV</option>
+                    <option value="fasfs">Speakers</option>
+                    <option value="fasfs">Wheat</option>
+                    <option value="fasfs">Mouse</option>
+                    <option value="fasfs">Lenovo Ideapad</option>
+                </select>
+                <input type="number" placeholder="Enter the quantity">
+                <input type="button" value="Add Order">
+            </div>
+        </div>
+    </div>
+    
+    
+    <section class="header__section">
+        <div class="header__section__divs">
+            <div class="header__section__div">
+                <div class="text">
+                    <h1>Pending </h1>
+                    <h3>({{data.pending}})</h3>
+                </div>
+            </div>
+            <div class="header__section__div">
+                <div class="text">
+                    <h1>Total Orders</h1>
+                    <h3>({{data.ordersize}})</h3>
+                </div>
+            </div>
+            <div class="header__section__div">
+                <div class="text">
+                    <h1>Completed </h1>
+                    <h3>({{data.nonpending}})</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="customer__and__orders">
+        <section class="customers">
+            <div class="heading__search">
+                <h1 class="section__heading">Customers Information</h1>
+                <a href="#" id="addcust"><div class="add__">Add Customer</div></a>
+                <div class="search__">
+                    <input type="text" placeholder="Search by Name"> <button><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            
+            <div class="customers__heading">
+                <div><p>Ser. No.</p></div>
+                <div><p>Name </p></div>
+                <div><p>Phone</p></div>
+                <div><p>Address</p></div>
+            </div>
+
+            
+            <div class="all__customers">
+
+                {% for i,j in data.customers.items() %}
+                <div class="customers__infos">
+                    <div><p>{{i}}</p></div>
+                    <div><p><a href="#"></a>{{j.0}} ({{j.1}}) </p></div>
+                    <div><p>{{j.2}}</p></div>
+                    <div><p>{{j.3}}</p></div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            
+        </section>
+
+        
+        <section class="orders">
+            <div class="heading__search">
+                <h1 class="section__heading">Orders Information</h1>
+                <a href="#" id="addorder"><div class="add__">Add Order</div></a>
+                <div class="search__">
+                    <input type="text" placeholder="Search by Order number"> <button><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="orders__heading">
+                <div><p>Order No.</p></div>
+                <div><p>Ordername </p></div>
+                <div><p>Date Ordered</p></div>
+                <div><p>Status</p></div>
+                <div><p>Ordered by</p></div>
+            </div>
+
+            <div class="all__orders">
+
+                {% for i,j in data.orders.items() %}
+                <div class="orders__infos">
+                    <div><p>{{i}}</p></div>
+                    <div><p>{{j.0}} - ({{j.1}}) </p></div>
+                    <div><p> {{j.3}} </p></div>
+                    <div><p>{{j.4}}</p></div>
+                    <div><p>{{j.2}}</p></div>
+                </div>
+                {% endfor %}
+                
+            </div>
+
+        </section>
+    </section>
+
+
+    <script src="{{ url_for('static',filename='js/app.js') }}"></script>
+
+</body>
+</html>

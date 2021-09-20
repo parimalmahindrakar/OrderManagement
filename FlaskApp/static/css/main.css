@@ -1,0 +1,490 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  *:focus {
+    outline: none;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  section.header__section {
+    height: 50vh;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  }
+  
+  @media (max-width: 1400px) {
+    section.header__section {
+      height: 40vh;
+    }
+  }
+  
+  @media (max-height: 920px) {
+    section.header__section {
+      height: 380px;
+    }
+  }
+  
+  @media (max-width: 1366px) {
+    section.header__section {
+      width: 1366px;
+    }
+  }
+  
+  section.header__section div.header__section__divs {
+    width: 85%;
+    height: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  @media (max-width: 1570px) {
+    section.header__section div.header__section__divs {
+      width: 100%;
+    }
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div {
+    cursor: pointer;
+    width: 300px;
+    height: 300px;
+    -webkit-box-shadow: 5px 5px 20px #aaa;
+            box-shadow: 5px 5px 20px #aaa;
+    border-radius: 25px;
+    -webkit-transition: .3s;
+    transition: .3s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  @media (max-width: 1400px) {
+    section.header__section div.header__section__divs div.header__section__div {
+      width: 250px;
+      height: 250px;
+    }
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div:hover {
+    -webkit-box-shadow: 1px 1px 8px #aaa;
+            box-shadow: 1px 1px 8px #aaa;
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div:nth-child(1) {
+    margin-left: 100px;
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div:nth-child(3) {
+    margin-right: 100px;
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div:nth-child(2) {
+    height: 400px;
+    width: 400px;
+  }
+  
+  @media (max-width: 1400px) {
+    section.header__section div.header__section__divs div.header__section__div:nth-child(2) {
+      height: 300px;
+      width: 300px;
+    }
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div div.text h1, section.header__section div.header__section__divs div.header__section__div div.text h3 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 2px #777;
+    padding: 10px;
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div div.text h1 {
+    font-size: 36px;
+    border-radius: 10px;
+  }
+  
+  section.header__section div.header__section__divs div.header__section__div div.text h3 {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+  
+  section.customer__and__orders {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    width: 100%;
+    height: 60vh;
+    margin: 1vh 0;
+  }
+  
+  @media (max-height: 920px) {
+    section.customer__and__orders {
+      height: 600px;
+    }
+  }
+  
+  @media (max-width: 1366px) {
+    section.customer__and__orders {
+      width: 1366px !important;
+    }
+  }
+  
+  section.customer__and__orders section {
+    -webkit-box-shadow: 0px 0px 10px #aaa;
+            box-shadow: 0px 0px 10px #aaa;
+    width: 48%;
+    height: 500px;
+  }
+  
+  section.customer__and__orders section div.heading__search {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 5px 0px 20px 0;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    border-bottom: 1px solid #aaa;
+  }
+  
+  section.customer__and__orders section div.heading__search div.search__ {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  section.customer__and__orders section div.heading__search div.search__ input {
+    padding: 5px;
+  }
+  
+  section.customer__and__orders section div.heading__search div.search__ button {
+    padding: 4px !important;
+  }
+  
+  section.customer__and__orders section div.heading__search div.add__ {
+    padding: 5px;
+    border: 1px solid;
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+  
+  section.customer__and__orders section div.heading__search div.add__:active {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  
+  section.customer__and__orders section:nth-child(1) {
+    padding: 20px;
+    width: 45%;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.customers__heading {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.customers__heading:hover {
+    background-color: #eee;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.customers__heading div {
+    width: 100%;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.customers__heading div p {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.customers__heading div:nth-child(1) {
+    width: 40%;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers {
+    height: 350px;
+    margin-top: 15px;
+    overflow-y: scroll;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers::-webkit-scrollbar {
+    display: none;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers div.customers__infos {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers div.customers__infos div:nth-child(1) {
+    width: 40%;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers div.customers__infos:hover {
+    background-color: #eee;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers div.customers__infos div {
+    width: 100%;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers div.customers__infos div p a {
+    color: #111;
+    -webkit-transition: 0s;
+    transition: 0s;
+  }
+  
+  section.customer__and__orders section:nth-child(1) div.all__customers div.customers__infos div p a:hover {
+    color: blue;
+  }
+  
+  section.customer__and__orders section:nth-child(2) {
+    padding: 20px;
+    width: 52%;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.orders__heading {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.orders__heading:hover {
+    background-color: #eee;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.orders__heading div {
+    width: 100%;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.orders__heading div p {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.orders__heading div:nth-child(1) {
+    width: 50%;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.all__orders {
+    height: 350px;
+    margin-top: 15px;
+    overflow-y: scroll;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.all__orders::-webkit-scrollbar {
+    display: none;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.all__orders div.orders__infos {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.all__orders div.orders__infos:hover {
+    background-color: #eee;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.all__orders div.orders__infos div {
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  section.customer__and__orders section:nth-child(2) div.all__orders div.orders__infos div:nth-child(1) {
+    width: 50%;
+  }
+  
+  div.add__cutsomer {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: none;
+  }
+  
+  div.add__cutsomer i.fa {
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  
+  div.add__cutsomer div.form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 40%;
+  }
+  
+  @media (max-width: 1366px) {
+    div.add__cutsomer div.form {
+      width: 700px;
+    }
+  }
+  
+  div.add__cutsomer div.form div.take__info {
+    padding: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  
+  div.add__cutsomer div.form div.take__info input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    -webkit-box-shadow: 0px 0px 2px #111;
+            box-shadow: 0px 0px 2px #111;
+  }
+  
+  div.add__cutsomer div.form div.take__info input:nth-child(4) {
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: .3s;
+    margin-top: 20px;
+    background-color: aquamarine;
+    font-weight: bold;
+  }
+  
+  div.add__cutsomer div.form div.take__info input:nth-child(4):active {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  
+  div.add__order {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: none;
+  }
+  
+  div.add__order i.fa {
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  
+  div.add__order div.form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 40%;
+  }
+  
+  @media (max-width: 1366px) {
+    div.add__order div.form {
+      width: 700px;
+    }
+  }
+  
+  div.add__order div.form div.take__info {
+    padding: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  
+  div.add__order div.form div.take__info select {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  div.add__order div.form div.take__info input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    -webkit-box-shadow: 0px 0px 2px #111;
+            box-shadow: 0px 0px 2px #111;
+  }
+  
+  div.add__order div.form div.take__info input:nth-child(4) {
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: .3s;
+    margin-top: 20px;
+    background-color: aquamarine;
+    font-weight: bold;
+  }
+  
+  div.add__order div.form div.take__info input:nth-child(4):active {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  
+  
