@@ -17,6 +17,11 @@
             <div class="take__info">
                 <input id="flname" type="text" placeholder="Firstname + Lastname">
                 <input id="phonenum" type="text" placeholder="Enter the phone number">
+                <select name="" id="genders">
+                    <option value="">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
                 <input id="address" type="text" placeholder="Enter the address.">
                 <input id="addcustbutton" type="button" value="Add Customer">
             </div>
@@ -27,27 +32,20 @@
         <i class="fa fa-close"></i>
         <div class="form">
             <div class="take__info">
-                <select name="" id="" >
-                    <option value="fasfs">Select Customer</option>
-                    <option value="fasfs">Parimal Mahindrakar</option>
-                    <option value="fasfs">Rushikesh Landge</option>
-                    <option value="fasfs">Deepak Kavhale</option>
-                    <option value="fasfs">Predoom Chalk</option>
-                    <option value="fasfs">Prathmesh Kulkarni</option>
-                    <option value="fasfs">Tanishk Rane</option>
-                    <option value="fasfs">Omkar Bhope</option>
+                <select name="" id="custselect" >
+                    <option value="selectfirst">Select Customer</option>
+                    {% for i,j in data.customers.items() %}
+                    <option value="{{i}}">{{j.0}}</option>
+                    {% endfor %}
                 </select>
-                <select name="" id="" >
+                <select name="" id="orderitemselect" >
                     <option value="fasfs">Select Orderitems</option>
-                    <option value="fasfs">Telephone</option>
-                    <option value="fasfs">Smart TV</option>
-                    <option value="fasfs">Speakers</option>
-                    <option value="fasfs">Wheat</option>
-                    <option value="fasfs">Mouse</option>
-                    <option value="fasfs">Lenovo Ideapad</option>
+                    {% for i,j in data.ordersitems.items() %}
+                    <option value="{{i}}">{{j.0}}-({{j.1}})</option>
+                    {% endfor %}
                 </select>
-                <input type="number" placeholder="Enter the quantity">
-                <input type="button" value="Add Order">
+                <input type="number" id="qtyorderitem" placeholder="Enter the quantity">
+                <input id="addorderbutton" type="button" value="Add Order">
             </div>
         </div>
     </div>
@@ -56,20 +54,20 @@
     <section class="header__section">
         <div class="header__section__divs">
             <div class="header__section__div">
-                <div class="text">
-                    <h1>Pending </h1>
+                <div id="pendingid" class="text">
+                    <h1 >Pending </h1>
                     <h3>({{data.pending}})</h3>
                 </div>
             </div>
             <div class="header__section__div">
-                <div class="text">
+                <div id="totalid" class="text">
                     <h1>Total Orders</h1>
                     <h3>({{data.ordersize}})</h3>
                 </div>
             </div>
             <div class="header__section__div">
-                <div class="text">
-                    <h1>Completed </h1>
+                <div id="completedid" class="text">
+                    <h1 id="completedid">Completed </h1>
                     <h3>({{data.nonpending}})</h3>
                 </div>
             </div>
@@ -82,7 +80,7 @@
                 <h1 class="section__heading">Customers Information</h1>
                 <a href="#" id="addcust"><div class="add__">Add Customer</div></a>
                 <div class="search__">
-                    <input type="text" placeholder="Search by Name"> <button><i class="fa fa-search"></i></button>
+                    <input id="searchcust" type="text" placeholder="Search by Name"> <button><i class="fa fa-search"></i></button>
                 </div>
             </div>
             
@@ -115,7 +113,7 @@
                 <h1 class="section__heading">Orders Information</h1>
                 <a href="#" id="addorder"><div class="add__">Add Order</div></a>
                 <div class="search__">
-                    <input type="text" placeholder="Search by Order number"> <button><i class="fa fa-search"></i></button>
+                    <input id="searchorderid" type="text" placeholder="Search by Order number"> <button><i class="fa fa-search"></i></button>
                 </div>
             </div>
             <div class="orders__heading">
@@ -131,10 +129,10 @@
                 {% for i,j in data.orders.items() %}
                 <div class="orders__infos">
                     <div><p>{{i}}</p></div>
-                    <div><p>{{j.0}} - ({{j.1}}) </p></div>
-                    <div><p> {{j.3}} </p></div>
+                    <div><p>{{j.1}} - ({{j.0}}) </p></div>
+                    <div><p> {{j.2}} </p></div>
+                    <div><p>{{j.3}}</p></div>
                     <div><p>{{j.4}}</p></div>
-                    <div><p>{{j.2}}</p></div>
                 </div>
                 {% endfor %}
                 

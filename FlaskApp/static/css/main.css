@@ -397,7 +397,7 @@
             box-shadow: 0px 0px 2px #111;
   }
   
-  div.add__cutsomer div.form div.take__info input:nth-child(4) {
+  div.add__cutsomer div.form div.take__info input:nth-child(5) {
     cursor: pointer;
     -webkit-transition: .3s;
     transition: .3s;
@@ -405,8 +405,13 @@
     background-color: aquamarine;
     font-weight: bold;
   }
+
+  div.add__cutsomer div.form div.take__info select {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
   
-  div.add__cutsomer div.form div.take__info input:nth-child(4):active {
+  div.add__cutsomer div.form div.take__info input:nth-child(5):active {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);
   }
