@@ -134,7 +134,38 @@ def getpending():
 
         cursor.execute(query)
         data = cursor.fetchall()
-        return jsonify(data)
+        return jsonify({"msg" : data})
+
+
+@app.route("/orderbyname", methods =["GET", "POST"])
+def orderbyname():
+    if request.method == "POST":
+        data =  json.loads(request.data)
+        query = ""
+        if(data['words'] == 'orderbyname'):
+            query = "select * from Customer order by name"
+        elif(data['words'] == 'orderbyinitially'):
+            query = "select * from Customer"
+        cursor.execute(query)
+        data = cursor.fetchall()
+        return jsonify({"msg" : data})
+
+
+@app.route("/orderbydate",  methods =["GET", "POST"])
+def orderbydate():
+    if request.method == "POST":
+        data =  json.loads(request.data)
+        query = ""
+        if(data['words'] == "orderbydate"):
+            query = "select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID order by orderedOn"
+        elif(data['words'] == 'orderbyinitially'):
+            query = "select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID"
+        elif(data['words'] == 'orderbynameinorderstable'):
+            query = "select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID order by name"
+        cursor.execute(query)
+        data = cursor.fetchall()
+        return jsonify({"msg" : data})
+
 
 '''
 

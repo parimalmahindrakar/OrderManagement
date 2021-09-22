@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">    
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/external.css') }}">    
+
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://kit.fontawesome.com/3b1ca000cb.js"></script>
     <title>Order Management</title>
@@ -85,8 +87,8 @@
             </div>
             
             <div class="customers__heading">
-                <div><p>Ser. No.</p></div>
-                <div><p>Name </p></div>
+                <div><p>Ser. No. <i id="orderinitially" class="fas fa-caret-down"></i></p></div>
+                <div><p>Name <i id="orderbyname" class="fas fa-caret-down"></i> </p></div>
                 <div><p>Phone</p></div>
                 <div><p>Address</p></div>
             </div>
@@ -96,8 +98,8 @@
 
                 {% for i,j in data.customers.items() %}
                 <div class="customers__infos">
-                    <div><p>{{i}}</p></div>
-                    <div><p><a href="#"></a>{{j.0}} ({{j.1}}) </p></div>
+                    <div><p>{{i}}</p></div> 
+                    <div><p class="namewithgender">{{j.0}} ({{j.1}}) </p></div>
                     <div><p>{{j.2}}</p></div>
                     <div><p>{{j.3}}</p></div>
                 </div>
@@ -117,11 +119,11 @@
                 </div>
             </div>
             <div class="orders__heading">
-                <div><p>Order No.</p></div>
+                <div><p>Order No. <i id="orderbyinitially" class="fas fa-caret-down"></i> </p></div>
                 <div><p>Ordername </p></div>
-                <div><p>Date Ordered</p></div>
+                <div><p>Date Ordered <i id="orderbydate" class="fas fa-caret-down"></i> </p></div>
                 <div><p>Status</p></div>
-                <div><p>Ordered by</p></div>
+                <div><p>Ordered by <i id="orderbynameinorderstable" class="fas fa-caret-down"></i></p></div>
             </div>
 
             <div class="all__orders">

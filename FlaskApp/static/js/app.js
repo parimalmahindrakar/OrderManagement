@@ -152,11 +152,43 @@ $("input#searchorderid").keyup(() => {
 
 
 $("div#pendingid").click(() => {
+
     fetch("/getpendingntotal", {
         method: "POST",
         body: JSON.stringify({
             'whatwewant' : "Pending"
         })
+    }).then(res => res.json()).then((data) => {
+
+        
+
+        $("div.all__orders").empty()
+
+        console.log(data.msg.length)
+            
+        for (var i = 0; i < data.msg.length; i++) {
+                
+
+                orderid = data.msg[i][0]
+                orderqty = data.msg[i][1]
+                ordername = data.msg[i][2]
+                date = data.msg[i][3]
+                status = data.msg[i][4]
+                orderedby = data.msg[i][5]
+
+
+
+                str = '<div class="orders__infos">\
+                    <div><p>'+ orderid +'</p></div>\
+                    <div><p>'+ordername+' - ('+orderqty+') </p></div>\
+                    <div><p> '+date+' </p></div>\
+                    <div><p>'+status+'</p></div>\
+                    <div><p>'+orderedby+'</p></div>\
+                </div>'
+
+                $("div.all__orders").append(str)
+
+            }
     })
 })
 
@@ -166,6 +198,37 @@ $("div#totalid").click(() => {
         body: JSON.stringify({
             'whatwewant' : "all"
         })
+    }).then(res => res.json()).then((data) => {
+
+        
+
+        $("div.all__orders").empty()
+
+        console.log(data.msg.length)
+            
+        for (var i = 0; i < data.msg.length; i++) {
+                
+
+                orderid = data.msg[i][0]
+                orderqty = data.msg[i][1]
+                ordername = data.msg[i][2]
+                date = data.msg[i][3]
+                status = data.msg[i][4]
+                orderedby = data.msg[i][5]
+
+
+
+                str = '<div class="orders__infos">\
+                    <div><p>'+ orderid +'</p></div>\
+                    <div><p>'+ordername+' - ('+orderqty+') </p></div>\
+                    <div><p> '+date+' </p></div>\
+                    <div><p>'+status+'</p></div>\
+                    <div><p>'+orderedby+'</p></div>\
+                </div>'
+
+                $("div.all__orders").append(str)
+
+            }
     })
 })
 
@@ -175,6 +238,250 @@ $("div#completedid").click(() => {
         body: JSON.stringify({
             'whatwewant' : "Completed"
         })
+    }).then(res => res.json()).then((data) => {
+
+        
+
+        $("div.all__orders").empty()
+
+        console.log(data.msg.length)
+            
+        for (var i = 0; i < data.msg.length; i++) {
+                
+
+                orderid = data.msg[i][0]
+                orderqty = data.msg[i][1]
+                ordername = data.msg[i][2]
+                date = data.msg[i][3]
+                status = data.msg[i][4]
+                orderedby = data.msg[i][5]
+
+
+
+                str = '<div class="orders__infos">\
+                    <div><p>'+ orderid +'</p></div>\
+                    <div><p>'+ordername+' - ('+orderqty+') </p></div>\
+                    <div><p> '+date+' </p></div>\
+                    <div><p>'+status+'</p></div>\
+                    <div><p>'+orderedby+'</p></div>\
+                </div>'
+
+                $("div.all__orders").append(str)
+
+        }
     })
 })
+
+
+
+$("i#orderbyname").click(() => {
+    fetch("/orderbyname", {
+        method: "POST",
+        body: JSON.stringify({
+            "words" : "orderbyname"
+        })
+    }).then(res => res.json()).then((data) => {
+        $("div.all__customers").empty()
+        $("i#orderbyname").attr("class", "fas fa-caret-up")
+        for (var i = 0; i < data.msg.length; i++)  {
+            str = '<div class="customers__infos">\
+                <div><p>'+data.msg[i][0]+'</p></div>\
+                <div><p><a href="#"></a>'+data.msg[i][1]+'('+data.msg[i][2]+') </p></div>\
+                <div><p>'+data.msg[i][3]+'</p></div>\
+                <div><p>'+data.msg[i][4]+'</p></div>\
+            </div>'
+            $("div.all__customers").append(str)
+        }
+    })
+})
+
+$("i#orderinitially").click(() => {
+    
+    fetch("/orderbyname", {
+        method: "POST",
+        body: JSON.stringify({
+            "words" : "orderbyinitially"
+        })
+    }).then(res => res.json()).then((data) => {
+        $("div.all__customers").empty()
+        $("i#orderbyname").attr("class", "fas fa-caret-down")
+        for (var i = 0; i < data.msg.length; i++)  {
+            str = '<div class="customers__infos">\
+                <div><p>'+data.msg[i][0]+'</p></div>\
+                <div><p><a href="#"></a>'+data.msg[i][1]+'('+data.msg[i][2]+') </p></div>\
+                <div><p>'+data.msg[i][3]+'</p></div>\
+                <div><p>'+data.msg[i][4]+'</p></div>\
+            </div>'
+            $("div.all__customers").append(str)
+        }
+    })
+
+})
+
+
+$("i#orderbydate").click(() => {
+    
+    fetch("/orderbydate", {
+        method: "POST",
+        body: JSON.stringify({
+            "words" : "orderbydate"
+        })
+    }).then(res => res.json()).then((data) => {
+        
+
+        $("div.all__orders").empty()
+        $("i#orderbydate").attr("class", "fas fa-caret-up")
+
+
+        $("i#orderbyinitially").attr("class", "fas fa-caret-down")
+        $("i#orderbynameinorderstable").attr("class", "fas fa-caret-down")
+            
+        for (var i = 0; i < data.msg.length; i++) {
+                
+
+                orderid = data.msg[i][0]
+                orderqty = data.msg[i][1]
+                ordername = data.msg[i][2]
+                date = data.msg[i][3]
+                status = data.msg[i][4]
+                orderedby = data.msg[i][5]
+
+
+
+                str = '<div class="orders__infos">\
+                    <div><p>'+ orderid +'</p></div>\
+                    <div><p>'+ordername+' - ('+orderqty+') </p></div>\
+                    <div><p> '+date+' </p></div>\
+                    <div><p>'+status+'</p></div>\
+                    <div><p>'+orderedby+'</p></div>\
+                </div>'
+
+                $("div.all__orders").append(str)
+
+        }
+
+
+    })
+
+})
+
+
+
+$("i#orderbyinitially").click(() => {
+    
+    fetch("/orderbydate", {
+        method: "POST",
+        body: JSON.stringify({
+            "words" : "orderbyinitially"
+        })
+    }).then(res => res.json()).then((data) => {
+        
+
+        $("div.all__orders").empty()
+        $("i#orderbyinitially").attr("class", "fas fa-caret-up")
+        $("i#orderbynameinorderstable").attr("class", "fas fa-caret-down")
+        $("i#orderbydate").attr("class", "fas fa-caret-down")
+
+        
+            
+        for (var i = 0; i < data.msg.length; i++) {
+                
+
+                orderid = data.msg[i][0]
+                orderqty = data.msg[i][1]
+                ordername = data.msg[i][2]
+                date = data.msg[i][3]
+                status = data.msg[i][4]
+                orderedby = data.msg[i][5]
+
+
+
+                str = '<div class="orders__infos">\
+                    <div><p>'+ orderid +'</p></div>\
+                    <div><p>'+ordername+' - ('+orderqty+') </p></div>\
+                    <div><p> '+date+' </p></div>\
+                    <div><p>'+status+'</p></div>\
+                    <div><p>'+orderedby+'</p></div>\
+                </div>'
+
+                $("div.all__orders").append(str)
+
+        }
+
+
+    })
+
+})
+
+
+
+
+
+$("i#orderbynameinorderstable").click(() => {
+    
+    fetch("/orderbydate", {
+        method: "POST",
+        body: JSON.stringify({
+            "words" : "orderbynameinorderstable"
+        })
+    }).then(res => res.json()).then((data) => {
+        
+
+        $("div.all__orders").empty()
+        $("i#orderbynameinorderstable").attr("class", "fas fa-caret-up")
+        $("i#orderbyinitially").attr("class", "fas fa-caret-down")
+        $("i#orderbydate").attr("class", "fas fa-caret-down")
+
+
+            
+        for (var i = 0; i < data.msg.length; i++) {
+                
+
+                orderid = data.msg[i][0]
+                orderqty = data.msg[i][1]
+                ordername = data.msg[i][2]
+                date = data.msg[i][3]
+                status = data.msg[i][4]
+                orderedby = data.msg[i][5]
+
+
+
+                str = '<div class="orders__infos">\
+                    <div><p>'+ orderid +'</p></div>\
+                    <div><p>'+ordername+' - ('+orderqty+') </p></div>\
+                    <div><p> '+date+' </p></div>\
+                    <div><p>'+status+'</p></div>\
+                    <div><p>'+orderedby+'</p></div>\
+                </div>'
+
+                $("div.all__orders").append(str)
+
+        }
+
+
+    })
+
+})
+
+
+$("p.namewithgender").click(() => {
+
+    
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

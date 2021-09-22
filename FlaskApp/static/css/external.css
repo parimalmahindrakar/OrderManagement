@@ -1,0 +1,11 @@
+i.fa-caret-down,i.fa-caret-up {
+    cursor: pointer;
+}
+
+p.namewithgender {
+    color: blue;
+    cursor: pointer;
+}
+p.namewithgender:hover {
+    text-decoration: underline;
+}
