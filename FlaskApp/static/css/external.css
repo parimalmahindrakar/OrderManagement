@@ -2,10 +2,93 @@ i.fa-caret-down,i.fa-caret-up {
     cursor: pointer;
 }
 
-p.namewithgender {
+p.namewithgender, p.updatependingorder {
     color: blue;
     cursor: pointer;
 }
-p.namewithgender:hover {
+p.namewithgender:hover, p.updatependingorder:hover {
     text-decoration: underline;
+}
+
+
+div.pendingtocomplted {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: none;
+  }
+  
+  div.pendingtocomplted i.fa {
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  
+  div.pendingtocomplted div.form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 250px;
+  }
+  
+  div.pendingtocomplted div.form div.take__info {
+    padding: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  
+  div.pendingtocomplted div.form div.take__info p {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    -webkit-box-shadow: 0px 0px 2px #111;
+            box-shadow: 0px 0px 2px #111;
+    text-align: center;
+  }
+  
+  div.pendingtocomplted div.form div.take__info button {
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+    background-color: aquamarine;
+    font-weight: bold;
+    -webkit-transition: .5s;
+    transition: .5s;
+  }
+  
+  div.pendingtocomplted div.form div.take__info button:active {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+
+
+
+
+i.fa-trash-alt {
+
+  font-size: 13px;
+  color: #999;
+  cursor: pointer;
+  transition: .2s;
+}
+
+i.fa-trash-alt:hover {
+  color: #222;
 }

@@ -26,7 +26,7 @@ def selectall():
     data = cursor.fetchall()
     for i in data:
         customers.update({i[0] : i[1:]})
-    cursor.execute("select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID")
+    cursor.execute("select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID order by orderid")
     data = cursor.fetchall()
     for i in data:
         orders.update({i[0] : i[1:]})
@@ -59,9 +59,15 @@ def addcustomer():
         gender = "F" if(data['gender'] == "Female") else "M"
         phone = data['phone']
         address = data['address']
-        query = f'insert into Customer(name, gender, phone, address) values("{name}", "{gender}","{phone}", "{address}");'
-        cursor.execute(query)
-        conn.commit()
+        action = data['action']
+        if(action == 'add'):
+            query = f'insert into Customer(name, gender, phone, address) values("{name}", "{gender}","{phone}", "{address}");'
+            cursor.execute(query)
+            conn.commit()
+        elif(action == 'update'):
+            query = f"update Customer set name='{name}', address = '{address}', gender='{gender}' ,phone='{phone}' where custid = {data['custid']};"
+            cursor.execute(query)
+            conn.commit()
         print(data)
         return jsonify(data)
     return "FORBIDDEN"
@@ -112,15 +118,19 @@ def searchorder():
         data = json.loads(request.data)['words']
         cursor.execute(f"select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID and name like '%{data}%'")
         data = list(cursor.fetchall())
-        
-        for i in data:
-            i =  list(i)
-            # i[3] = str(i[3].year)+"-"+str(i[3].month)+"-"+str(i[3].day)
-        print(data)
+        data = strdate(data)
+
         return jsonify({"msg" : data})
 
 
-
+def strdate(data) :
+    newlist = []
+    for i in data:
+        newlist.append(list(i))
+    for i in newlist:
+        str_ = "0" if i[3].month >=1 and i[3].month <=9 else ""
+        i[3] = str(i[3].year)+"-"+str_+str(i[3].month)+"-"+str(i[3].day)
+    return newlist
 
 @app.route("/getpendingntotal", methods =["GET", "POST"])
 def getpending():
@@ -130,10 +140,11 @@ def getpending():
         if data == "Pending" or data == "Completed" : 
             query = f'select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID and status = "{data}";'
         else :
-            query = f'select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID;'
+            query = f'select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID order by orderid;'
 
         cursor.execute(query)
         data = cursor.fetchall()
+        data = strdate(data)
         return jsonify({"msg" : data})
 
 
@@ -164,8 +175,46 @@ def orderbydate():
             query = "select orderid, quantity, OrderItemName, orderedOn, status, name from Customer, OrderItem, Orders where Customer.custid=Orders.custid and Orders.orderitemid = OrderItem.orderitemID order by name"
         cursor.execute(query)
         data = cursor.fetchall()
+        data = strdate(data)
         return jsonify({"msg" : data})
 
+
+@app.route("/updatecustomer",  methods =["GET", "POST"])
+def updatecust():
+    if request.method == "POST":
+        data =  json.loads(request.data)
+
+
+@app.route("/getcustbyid",  methods =["GET", "POST"])
+def getcustbyid():
+    if request.method == "POST":
+        data =  json.loads(request.data)
+        query = f"select * from Customer where custid={data['id']}"
+        cursor.execute(query)
+        data = cursor.fetchall()
+        return jsonify({"msg" :data})
+
+@app.route("/updatependingorder",  methods =["GET", "POST"])
+def updatependingorder():
+    if request.method == "POST":
+        data =  json.loads(request.data)
+        orderid  = data['orderid']
+        query = f'update Orders set status="Completed" where orderid = {orderid}'
+        cursor.execute(query)
+        conn.commit()
+        return {"msg" : "updated"}
+
+
+@app.route("/deleteorder",  methods =["GET", "POST"])
+def deleteorder():
+    if request.method == "POST":
+        data =  json.loads(request.data)
+        orderid  = data['orderid']
+        print(orderid)
+        query = f'delete from Orders where orderid = {orderid}'
+        cursor.execute(query)
+        conn.commit()
+        return {"msg" : "deleted"}
 
 '''
 
@@ -197,7 +246,7 @@ def orderbydate():
     );
 
     insert into OrderItem(OrderItemName, stock, price) values
-    ("Samsung TV", 300, 40000),
+    ("Samsung TV", 300, 40000), 
     ("Samsung G M30S", 780, 14500),
     ("Realme 5G", 400, 19500),
     ("Lenovo Ideapad 330", 170, 42040),

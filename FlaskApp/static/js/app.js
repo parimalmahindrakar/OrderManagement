@@ -1,8 +1,19 @@
 $("a#addcust").click(() => {
-    $("div.add__cutsomer").css("display", "block")
+    $("div#add__customer__add").css("display", "block")
 })
 $("i.fa").click(() => {
-    $("div.add__cutsomer").css("display", "none")
+    $("div#add__customer__add").css("display", "none")
+    
+})
+$("i.fa").click(() => {
+    $("div#update__customer__update").css("display", "none")
+    
+})
+
+
+$("i.fa").click(() => {
+    location.reload()
+    
 })
 
 $("a#addorder").click(() => {
@@ -11,6 +22,8 @@ $("a#addorder").click(() => {
 $("i.fa").click(() => {
     $("div.add__order").css("display", "none")
 })
+
+
 
 
 $("input#addcustbutton").click(() => {
@@ -27,7 +40,8 @@ $("input#addcustbutton").click(() => {
             'name': name,
             'phone': phone,
             'address': address,
-            'gender' : gender
+            'gender': gender,
+            'action' : 'add'
         })
     }).then((res) => {
         return res.json()
@@ -65,7 +79,7 @@ $("input#addorderbutton").click(() => {
 
 $("input#searchcust").keyup(() => {
     var words = $("input#searchcust").val()
-    if (words.length > 2) {
+    if (words.length > 0) {
         fetch('/searchcust', {
             method: 'POST',
             body: JSON.stringify({
@@ -89,11 +103,12 @@ $("input#searchcust").keyup(() => {
                 
                 str = '<div class="customers__infos">\
                     <div><p>'+id+'</p></div>\
-                    <div><p><a href="#"></a>'+name+' ('+gender+') </p></div>\
+                    <div><p custid='+id+' class="namewithgender" >'+name+' ('+gender+') </p></div>\
                     <div><p>'+phone+'</p></div>\
                     <div><p>'+address+'</p></div>\
                 </div>'
                 $("div.all__customers").append(str)
+                // updatingonly()
             }
     
     
@@ -132,7 +147,7 @@ $("input#searchorderid").keyup(() => {
                     <div><p>'+ orderid +'</p></div>\
                     <div><p>'+ordername+' - ('+orderqty+') </p></div>\
                     <div><p> '+date+' </p></div>\
-                    <div><p>'+status+'</p></div>\
+                    <div><p class="updatependingorder">'+status+'</p></div>\
                     <div><p>'+orderedby+'</p></div>\
                 </div>'
 
@@ -182,7 +197,7 @@ $("div#pendingid").click(() => {
                     <div><p>'+ orderid +'</p></div>\
                     <div><p>'+ordername+' - ('+orderqty+') </p></div>\
                     <div><p> '+date+' </p></div>\
-                    <div><p>'+status+'</p></div>\
+                    <div><p class="updatependingorder">'+status+'</p></div>\
                     <div><p>'+orderedby+'</p></div>\
                 </div>'
 
@@ -222,7 +237,7 @@ $("div#totalid").click(() => {
                     <div><p>'+ orderid +'</p></div>\
                     <div><p>'+ordername+' - ('+orderqty+') </p></div>\
                     <div><p> '+date+' </p></div>\
-                    <div><p>'+status+'</p></div>\
+                    <div><p class="updatependingorder">'+status+'</p></div>\
                     <div><p>'+orderedby+'</p></div>\
                 </div>'
 
@@ -262,7 +277,7 @@ $("div#completedid").click(() => {
                     <div><p>'+ orderid +'</p></div>\
                     <div><p>'+ordername+' - ('+orderqty+') </p></div>\
                     <div><p> '+date+' </p></div>\
-                    <div><p>'+status+'</p></div>\
+                    <div><p class="updatependingorder">'+status+'</p></div>\
                     <div><p>'+orderedby+'</p></div>\
                 </div>'
 
@@ -286,7 +301,7 @@ $("i#orderbyname").click(() => {
         for (var i = 0; i < data.msg.length; i++)  {
             str = '<div class="customers__infos">\
                 <div><p>'+data.msg[i][0]+'</p></div>\
-                <div><p><a href="#"></a>'+data.msg[i][1]+'('+data.msg[i][2]+') </p></div>\
+                <div><p custid='+data.msg[i][0]+' class="namewithgender">'+data.msg[i][1]+'('+data.msg[i][2]+') </p></div>\
                 <div><p>'+data.msg[i][3]+'</p></div>\
                 <div><p>'+data.msg[i][4]+'</p></div>\
             </div>'
@@ -297,24 +312,7 @@ $("i#orderbyname").click(() => {
 
 $("i#orderinitially").click(() => {
     
-    fetch("/orderbyname", {
-        method: "POST",
-        body: JSON.stringify({
-            "words" : "orderbyinitially"
-        })
-    }).then(res => res.json()).then((data) => {
-        $("div.all__customers").empty()
-        $("i#orderbyname").attr("class", "fas fa-caret-down")
-        for (var i = 0; i < data.msg.length; i++)  {
-            str = '<div class="customers__infos">\
-                <div><p>'+data.msg[i][0]+'</p></div>\
-                <div><p><a href="#"></a>'+data.msg[i][1]+'('+data.msg[i][2]+') </p></div>\
-                <div><p>'+data.msg[i][3]+'</p></div>\
-                <div><p>'+data.msg[i][4]+'</p></div>\
-            </div>'
-            $("div.all__customers").append(str)
-        }
-    })
+    location.reload()
 
 })
 
@@ -352,7 +350,7 @@ $("i#orderbydate").click(() => {
                     <div><p>'+ orderid +'</p></div>\
                     <div><p>'+ordername+' - ('+orderqty+') </p></div>\
                     <div><p> '+date+' </p></div>\
-                    <div><p>'+status+'</p></div>\
+                    <div><p class="updatependingorder">'+status+'</p></div>\
                     <div><p>'+orderedby+'</p></div>\
                 </div>'
 
@@ -369,47 +367,7 @@ $("i#orderbydate").click(() => {
 
 $("i#orderbyinitially").click(() => {
     
-    fetch("/orderbydate", {
-        method: "POST",
-        body: JSON.stringify({
-            "words" : "orderbyinitially"
-        })
-    }).then(res => res.json()).then((data) => {
-        
-
-        $("div.all__orders").empty()
-        $("i#orderbyinitially").attr("class", "fas fa-caret-up")
-        $("i#orderbynameinorderstable").attr("class", "fas fa-caret-down")
-        $("i#orderbydate").attr("class", "fas fa-caret-down")
-
-        
-            
-        for (var i = 0; i < data.msg.length; i++) {
-                
-
-                orderid = data.msg[i][0]
-                orderqty = data.msg[i][1]
-                ordername = data.msg[i][2]
-                date = data.msg[i][3]
-                status = data.msg[i][4]
-                orderedby = data.msg[i][5]
-
-
-
-                str = '<div class="orders__infos">\
-                    <div><p>'+ orderid +'</p></div>\
-                    <div><p>'+ordername+' - ('+orderqty+') </p></div>\
-                    <div><p> '+date+' </p></div>\
-                    <div><p>'+status+'</p></div>\
-                    <div><p>'+orderedby+'</p></div>\
-                </div>'
-
-                $("div.all__orders").append(str)
-
-        }
-
-
-    })
+    location.reload()
 
 })
 
@@ -450,7 +408,7 @@ $("i#orderbynameinorderstable").click(() => {
                     <div><p>'+ orderid +'</p></div>\
                     <div><p>'+ordername+' - ('+orderqty+') </p></div>\
                     <div><p> '+date+' </p></div>\
-                    <div><p>'+status+'</p></div>\
+                    <div><p class="updatependingorder">'+status+'</p></div>\
                     <div><p>'+orderedby+'</p></div>\
                 </div>'
 
@@ -464,24 +422,93 @@ $("i#orderbynameinorderstable").click(() => {
 })
 
 
-$("p.namewithgender").click(() => {
-
-    
-
-
-})
 
 
 
 
 
+var updateBtns = document.getElementsByClassName("namewithgender");
+for (var i = 0; i < updateBtns.length; i++) {
+
+    updateBtns[i].addEventListener('click', function () {
+
+        var custid = this.getAttribute("custid")
+        fetch("/getcustbyid", {
+            method: "POST",
+            body: JSON.stringify({
+                'id':custid
+            })
+        }).then(res => res.json()).then((data) => {
+
+            $("div#update__customer__update").css("display", "block")
+            $("input#flnameupdate").attr("value", data.msg[0][1])
+            $("input#phonenumupdate").attr("value", data.msg[0][3])
+            $("select#gendersupdate").val(data.msg[0][2] == "M" ? "Male" : "Female")
+            $("input#addressupdate").attr("value", data.msg[0][4])
+
+            $("input#addcustbuttonupdate").click(() => {
+                var flname = $("input#flnameupdate").val()
+                var phonenum = $("input#phonenumupdate").val()
+                var gender = $("select#gendersupdate").val()
+                var address = $("input#addressupdate").val()
+                console.log(flname, phonenum, gender, address)
+                
+                var url = "/addcust"
+                fetch(url, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        'name': flname,
+                        'phone': phonenum,
+                        'address': address,
+                        'gender': gender,
+                        'action': 'update',
+                        'custid': custid
+                    })
+                }).then((res) => {
+                    return res.json()
+                }).then((data) => {
+                    console.log(data)
+                    window.location.reload()
+                })
+
+
+            })
+
+        })
+        
+    })
+}
 
 
 
 
 
+var updateOrdersBtns = document.getElementsByClassName("updatependingorder");
+for (var i = 0; i < updateOrdersBtns.length; i++) {
+
+    updateOrdersBtns[i].addEventListener('click', function () {
+
+        $("div#pendingtocomplted").css("display", "block")
 
 
+
+        var orderid = this.getAttribute("orderid")
+
+        $("button#surecompletedid").click(() => {
+            fetch("/updatependingorder", {
+                method: "POST",
+                body: JSON.stringify({
+                    "orderid" : orderid
+                })
+            }).then(res => res.json()).then((data) => {
+                location.reload()
+            }) 
+        })
+        
+        
+
+     })
+}
 
 
 

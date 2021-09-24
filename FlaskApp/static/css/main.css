@@ -22,7 +22,7 @@
   
   section.header__section {
     height: 40vh;
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   }
   
   @media (max-width: 1400px) {

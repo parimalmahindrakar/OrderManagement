@@ -8,12 +8,14 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://kit.fontawesome.com/3b1ca000cb.js"></script>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='img/cart.ico') }}">
+
     <title>Order Management</title>
 </head>
 <body>
 
 
-    <div class="add__cutsomer">
+    <div class="add__cutsomer" id="add__customer__add">
         <i class="fa fa-close"></i>
         <div class="form">
             <div class="take__info">
@@ -25,7 +27,36 @@
                     <option value="Female">Female</option>
                 </select>
                 <input id="address" type="text" placeholder="Enter the address.">
-                <input id="addcustbutton" type="button" value="Add Customer">
+                <input id="addcustbutton" data-action = "add" type="button" value="Add Customer">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pendingtocomplted" id="pendingtocomplted">
+        <i class="fa fa-close"></i>
+        <div class="form">
+            <div class="take__info">
+                <p>Are you sure ?</p>
+                <button class="surecompleted" id = "surecompletedid">Sure</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="add__cutsomer" id="update__customer__update">
+        <i class="fa fa-close"></i>
+        <div class="form">
+            <div class="take__info">
+                <input id="flnameupdate" type="text" placeholder="Firstname + Lastname">
+                <input id="phonenumupdate" type="text" placeholder="Enter the phone number">
+                <select name="" id="gendersupdate">
+                    <option value="">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <input id="addressupdate" type="text" placeholder="Enter the address.">
+                <input id="addcustbuttonupdate" type="button" value="Update Customer">
             </div>
         </div>
     </div>
@@ -99,7 +130,7 @@
                 {% for i,j in data.customers.items() %}
                 <div class="customers__infos">
                     <div><p>{{i}}</p></div> 
-                    <div><p class="namewithgender">{{j.0}} ({{j.1}}) </p></div>
+                    <div><p custid={{i}} class="namewithgender">{{j.0}} ({{j.1}}) </p></div>
                     <div><p>{{j.2}}</p></div>
                     <div><p>{{j.3}}</p></div>
                 </div>
@@ -115,7 +146,7 @@
                 <h1 class="section__heading">Orders Information</h1>
                 <a href="#" id="addorder"><div class="add__">Add Order</div></a>
                 <div class="search__">
-                    <input id="searchorderid" type="text" placeholder="Search by Order number"> <button><i class="fa fa-search"></i></button>
+                    <input id="searchorderid" type="text" placeholder="Search by name"> <button><i class="fa fa-search"></i></button>
                 </div>
             </div>
             <div class="orders__heading">
@@ -133,7 +164,7 @@
                     <div><p>{{i}}</p></div>
                     <div><p>{{j.1}} - ({{j.0}}) </p></div>
                     <div><p> {{j.2}} </p></div>
-                    <div><p>{{j.3}}</p></div>
+                    <div><p class="updatependingorder" orderid="{{i}}" >{{j.3}}</p></div>
                     <div><p>{{j.4}}</p></div>
                 </div>
                 {% endfor %}
