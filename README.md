@@ -1,7 +1,13 @@
 # OrderManagement Using Flask
+# (You can see total video here : https://www.youtube.com/watch?v=O3YwBTg-yQY)
+
+#### (Install the requirements) : 
 `pip3 install -r requirements.txt`
-#### (Install the requirements)
+
+
+#### (move to FlaskApp) : 
 `cd FlaskApp` 
-#### (move to FlaskApp)
+
+#### (Enter the above command ) : 
 `flask run`
-#### (Enter the above command )
+
